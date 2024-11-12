@@ -1,0 +1,109 @@
+<!-- A안 시작  -->
+<!-- <mvc:View
+    controllerName="demo3.controller.Detail"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page
+        title="Detail"
+        showNavButton="true"
+        navButtonPress=".onNavBack">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <Text id='txt1' text="{Name}"/>
+                <Text id='txt2' text="{Description}"/>
+                <Text id='txt3' text="{Price}"/>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View> -->
+<!-- B안 model을 통해서 데이터 가져오기 시작 -->
+<!-- <mvc:View
+    controllerName="demo3.controller.Detail"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page
+        title="Detail"
+        showNavButton="true"
+        navButtonPress=".onNavBack">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <Text id='txt1' text="{products>Name}"/>
+                <Text id='txt2' text="{products>Description}"/>
+                <Text id='txt3' text="{products>Price}"/>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View> -->
+
+<!-- C안 그래프 출력-->
+<mvc:View
+    controllerName="demo3.controller.Detail"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    displayBlock="true"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds">
+    <Page
+        title="Detail"
+        showNavButton="true"
+        navButtonPress=".onNavBack">
+    <content>
+            <VBox>
+                <!-- 라인 차트 정의 -->
+                <viz:VizFrame
+                    id="idVizFrame"
+                    width="700px"
+                    height="600px"
+                    vizType="column"
+                >
+                    <!-- 데이터셋 정의 -->
+                    <viz:dataset>
+                        <viz.data:FlattenedDataset data="{products>/products}">
+                            <viz.data:dimensions>
+                                <!-- 차트의 차원 정의 (카테고리) -->
+                                <viz.data:DimensionDefinition
+                                    id="n1"
+                                    name="Name"
+                                    value="{products>Name}"
+                                />
+                            </viz.data:dimensions>
+                            <viz.data:measures>
+                                <!-- 차트의 측정값 정의 (값) -->
+                                <viz.data:MeasureDefinition
+                                    id="n2"
+                                    name="Result"
+                                    value="{products>Result}"
+                                />
+                                <viz.data:MeasureDefinition
+                                    id="n3"
+                                    name="Result2"
+                                    value="{products>Result2}"
+                                />
+                            </viz.data:measures>
+                        </viz.data:FlattenedDataset>
+                    </viz:dataset>
+                    <!-- 피드 정의 (차트에 데이터 연결) -->
+                    <viz:feeds>
+                        <viz.feeds:FeedItem
+                            uid="valueAxis"
+                            type="Measure"
+                            values="Result"
+                        />
+                        <viz.feeds:FeedItem
+                            uid="valueAxis"
+                            type="Measure"
+                            values="Result2"
+                        />
+                        <viz.feeds:FeedItem
+                            uid="categoryAxis"
+                            type="Dimension"
+                            values="Name"
+                        />
+                    </viz:feeds>
+                </viz:VizFrame>
+            </VBox>
+    </content>
+    </Page>
+</mvc:View>

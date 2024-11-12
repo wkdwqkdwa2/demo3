@@ -1,0 +1,33 @@
+<!-- A안 시작 -->
+<!-- <mvc:View
+    controllerName="demo3.controller.Master"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page title="Products">
+        <List
+            items="{/Products}"
+            itemPress=".onListItemPress">
+            <StandardListItem
+                title="{Name}"
+                description="{ProductId}"
+                type="Navigation"/>
+        </List>
+    </Page>
+ </mvc:View> -->
+ 
+<!-- B안 시작 -->
+<mvc:View
+    controllerName="demo3.controller.Master"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page title="Products">
+        <List
+            items="{products>/products}"
+            itemPress=".onListItemPress">
+            <StandardListItem
+                title="{products>Name}"
+                description="{products>ProductId}"
+                type="Navigation"/>
+        </List>
+    </Page>
+</mvc:View> 
